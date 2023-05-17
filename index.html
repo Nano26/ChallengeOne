@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Encriptador</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="icon" href="images/logo.png" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <h1><img src="images/logo.png" /></h1>
+      </div>
+    </header>
+
+    <main>
+      <section class="encripter-input">
+        <textarea
+          class="textarea"
+          type="text"
+          rows="30"
+          cols="50"
+          placeholder="Ingrese su texto aqui"
+          id="encryptingText"
+        ></textarea>
+        <div class="warningText">
+          <span class="material-symbols-rounded"> error </span>
+          <p>Solo letras minúsculas y sin acentos</p>
+        </div>
+        <div>
+          <input
+            style="background-color: #0a3871; color: white"
+            type="submit"
+            value="Encriptar"
+            class="actionButton"
+            onclick="Encrypter()"
+          />
+          <input
+            style="background-color: #d8dfe8; color: #0a3871"
+            type="submit"
+            value="Desencriptar"
+            class="actionButton"
+            onclick="Dencrypter()"
+          />
+        </div>
+      </section>
+      <section class="encripter-text">
+        <!-- Texto Predeterminado -->
+        <div id="noneTextMsg">
+          <img id="muneco" src="images/Muñeco.png" />
+          <p style="font-size: larger; font-weight: bold">
+            Ningún mensaje fue encontrado
+          </p>
+          <p style="font-size: small">
+            Ingresa el texto que desees encriptar o desencriptar
+          </p>
+        </div>
+        <!-- Texto Encriptado -->
+        <textarea id="cryptedTxt" type="text" rows="15" readonly></textarea>
+        <button id="copyButton" onclick="copyText()">Copiar</button>
+      </section>
+    </main>
+
+    <footer>
+      <p class="footerText">
+        The page you are looking at was made by Mariano Rosso
+      </p>
+    </footer>
+
+    <script>
+      let encryptingText = document.getElementById("encryptingText");
+      let encryptedSection =
+        document.getElementsByClassName("encripter-text")[0];
+      let cryptedTxt = document.getElementById("cryptedTxt");
+      let copyButton = document.getElementById("copyButton");
+
+      function Encrypter() {
+        if (encryptingText.value.trim().length == 0) {
+          alert("Por favor ingrese un texto para encriptar o desencriptar");
+          return;
+        }
+        var mapObj = {
+          a: "ai",
+          e: "enter",
+          i: "imes",
+          o: "ober",
+          u: "ufat",
+        };
+        const txt = encryptingText.value.replace(
+          /a|e|i|o|u/gi,
+          function (matched) {
+            return mapObj[matched];
+          }
+        );
+        document.getElementById("noneTextMsg").style.display = "none";
+        encryptedSection.style = "align-content: space-between";
+        cryptedTxt.innerHTML = txt;
+        cryptedTxt.style.display = "block";
+        copyButton.style.display = "block";
+      }
+
+      function Dencrypter() {
+        if (encryptingText.value.trim().length == 0) {
+          alert("Por favor ingrese un texto para encriptar o desencriptar");
+          return;
+        }
+        var mapObj = {
+          ai: "a",
+          enter: "e",
+          imes: "i",
+          ober: "o",
+          ufat: "u",
+        };
+        const txt = encryptingText.value.replace(
+          /ai|enter|imes|ober|ufat/gi,
+          function (matched) {
+            return mapObj[matched];
+          }
+        );
+        document.getElementById("noneTextMsg").style.display = "none";
+        encryptedSection.style = "align-content: space-between";
+        cryptedTxt.innerHTML = txt;
+        cryptedTxt.style.display = "block";
+        copyButton.style.display = "block";
+      }
+
+      function copyText() {
+        // Get the text field
+        var copiedText = document.getElementById("cryptedTxt");
+
+        // Select the text field
+        copiedText.select();
+        copiedText.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copiedText.value);
+      }
+    </script>
+  </body>
+</html>
