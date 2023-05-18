@@ -27,6 +27,7 @@
 
     <main>
       <section class="encripter-input">
+        <!-- TextArea donde ira el texto que deseemos encriptar o desencriptar -->
         <textarea
           class="textarea"
           type="text"
@@ -39,6 +40,7 @@
           <span class="material-symbols-rounded"> error </span>
           <p>Solo letras minúsculas y sin acentos</p>
         </div>
+        <!-- Botones de acción -->
         <div>
           <input
             style="background-color: #0a3871; color: white"
@@ -87,10 +89,12 @@
       let copyButton = document.getElementById("copyButton");
 
       function Encrypter() {
+        // Chequeamos que el texto no sea vacio
         if (encryptingText.value.trim().length == 0) {
           alert("Por favor ingrese un texto para encriptar o desencriptar");
           return;
         }
+        // Mapa con los valores del encriptador
         var mapObj = {
           a: "ai",
           e: "enter",
@@ -98,12 +102,14 @@
           o: "ober",
           u: "ufat",
         };
+        //Creamos el texto encriptado
         const txt = encryptingText.value.replace(
           /a|e|i|o|u/gi,
           function (matched) {
             return mapObj[matched];
           }
         );
+        //Mostramos el texto encriptado en pantalla
         document.getElementById("noneTextMsg").style.display = "none";
         encryptedSection.style = "align-content: space-between";
         cryptedTxt.innerHTML = txt;
@@ -112,10 +118,12 @@
       }
 
       function Dencrypter() {
+        // Chequeamos que el texto no sea vacio
         if (encryptingText.value.trim().length == 0) {
           alert("Por favor ingrese un texto para encriptar o desencriptar");
           return;
         }
+        // Mapa con los valores del desencriptador
         var mapObj = {
           ai: "a",
           enter: "e",
@@ -123,12 +131,14 @@
           ober: "o",
           ufat: "u",
         };
+        //Creamos el texto desencriptado
         const txt = encryptingText.value.replace(
           /ai|enter|imes|ober|ufat/gi,
           function (matched) {
             return mapObj[matched];
           }
         );
+        //Mostramos el texto desencriptado en pantalla
         document.getElementById("noneTextMsg").style.display = "none";
         encryptedSection.style = "align-content: space-between";
         cryptedTxt.innerHTML = txt;
@@ -137,14 +147,14 @@
       }
 
       function copyText() {
-        // Get the text field
+        // Toma el texto del textField
         var copiedText = document.getElementById("cryptedTxt");
 
-        // Select the text field
+        // Selecciona el texto
         copiedText.select();
-        copiedText.setSelectionRange(0, 99999); // For mobile devices
+        copiedText.setSelectionRange(0, 99999); // Para dispositivos moviles
 
-        // Copy the text inside the text field
+        // Copial el texto adentro del textfield
         navigator.clipboard.writeText(copiedText.value);
       }
     </script>
