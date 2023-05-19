@@ -29,12 +29,11 @@
       <section class="encripter-input">
         <!-- TextArea donde ira el texto que deseemos encriptar o desencriptar -->
         <textarea
-          class="textarea"
           type="text"
           rows="30"
           cols="50"
           placeholder="Ingrese su texto aqui"
-          id="encryptingText"
+          id="inputTextArea"
         ></textarea>
         <div class="warningText">
           <span class="material-symbols-rounded"> error </span>
@@ -82,7 +81,7 @@
     </footer>
 
     <script>
-      let encryptingText = document.getElementById("encryptingText");
+      let textToCrypt = document.getElementById("inputTextArea");
       let encryptedSection =
         document.getElementsByClassName("encripter-text")[0];
       let cryptedTxt = document.getElementById("cryptedTxt");
@@ -90,7 +89,7 @@
 
       function Encrypter() {
         // Chequeamos que el texto no sea vacio
-        if (encryptingText.value.trim().length == 0) {
+        if (textToCrypt.value.trim().length == 0) {
           alert("Por favor ingrese un texto para encriptar o desencriptar");
           return;
         }
@@ -103,7 +102,7 @@
           u: "ufat",
         };
         //Creamos el texto encriptado
-        const txt = encryptingText.value.replace(
+        const txt = textToCrypt.value.replace(
           /a|e|i|o|u/gi,
           function (matched) {
             return mapObj[matched];
@@ -119,7 +118,7 @@
 
       function Dencrypter() {
         // Chequeamos que el texto no sea vacio
-        if (encryptingText.value.trim().length == 0) {
+        if (textToCrypt.value.trim().length == 0) {
           alert("Por favor ingrese un texto para encriptar o desencriptar");
           return;
         }
@@ -132,7 +131,7 @@
           ufat: "u",
         };
         //Creamos el texto desencriptado
-        const txt = encryptingText.value.replace(
+        const txt = textToCrypt.value.replace(
           /ai|enter|imes|ober|ufat/gi,
           function (matched) {
             return mapObj[matched];
