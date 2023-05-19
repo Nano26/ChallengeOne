@@ -6,6 +6,7 @@ body {
 .logo {
   position: relative;
   margin: 2% auto;
+  margin-left: 5%;
 }
 
 main {
@@ -129,6 +130,7 @@ main {
 @media screen and (max-width: 1000px) {
   .logo {
     margin: 10% auto;
+    margin-left: 5%;
   }
 
   main {
